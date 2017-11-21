@@ -1,12 +1,12 @@
 // STD
 #include <iostream>
-#include <fstream>
 
 // Blackboard
 #include <Binary_Search_Tree.h>
 
 // CodeTranslator
 #include <MorseCodePair.hpp>
+#include <CodeTranslator.hpp>
 
 void checkMorseCodePair(const MorseCodePair& left, const MorseCodePair& right, bool expected, bool show) {
 	auto result = left < right;
@@ -49,7 +49,9 @@ void testMorseCodePair(bool show) {
 }
 
 int main() {
-	testMorseCodePair(true);
+	testMorseCodePair(false);
+	CodeTranslator trans;
+
 	getchar();
 	return 0;
 }
