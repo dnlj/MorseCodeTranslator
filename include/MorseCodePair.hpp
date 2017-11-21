@@ -8,10 +8,10 @@
  */
 class MorseCodePair {
 	public:
-		/* The Morse code representation of MorseCodePair::letter */
+		/** The Morse code representation of MorseCodePair::letter */
 		std::string code;
 
-		/* The letter represented by MorseCodePair::code */
+		/** The letter represented by MorseCodePair::code */
 		std::string letter;
 };
 
