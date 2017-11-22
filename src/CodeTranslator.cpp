@@ -5,7 +5,7 @@
 #include <CodeTranslator.hpp>
 
 CodeTranslator::CodeTranslator() {
-	buildDecodeTree();
+	buildEncodeDecode();
 }
 
 std::string CodeTranslator::decode(const std::string& word) {
@@ -30,7 +30,7 @@ std::string CodeTranslator::decode(const std::string& word) {
 	return result;
 }
 
-void CodeTranslator::buildDecodeTree() {
+void CodeTranslator::buildEncodeDecode() {
 	const std::string path = "morse.txt";
 	std::ifstream file{path};
 
@@ -71,5 +71,6 @@ void CodeTranslator::buildDecodeTree() {
 	// Add the letters
 	for (auto it = pairs.begin(); it != pairs.end(); ++it) {
 		decodeTree.insert(*it);
+		encodeMap[it->letter] = it->code;
 	}
 }

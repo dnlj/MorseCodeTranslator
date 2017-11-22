@@ -2,6 +2,7 @@
 
 // STD
 #include <string>
+#include <unordered_map>
 
 // Blackboard
 #include <Binary_Search_Tree.h>
@@ -23,17 +24,14 @@ class CodeTranslator {
 		// string encode(string)
 
 	private:
-		using Tree = Binary_Search_Tree<MorseCodePair>;
-
 		/** Stores the tree used for decoding */
-		Tree decodeTree;
+		Binary_Search_Tree<MorseCodePair> decodeTree;
 
-		//Tree encodeTree;
+		/** Stores the map used for encoding */
+		std::unordered_map<std::string, std::string> encodeMap;
 
 		/**
-		 * @brief Builds the tree needed to decode words.
+		 * @brief Builds the strucutes needed to encode and decode words.
 		 */
-		void buildDecodeTree();
-
-		//void buildEncodeTree();
+		void buildEncodeDecode();
 };
