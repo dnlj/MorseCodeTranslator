@@ -13,7 +13,13 @@ class CodeTranslator {
 	public:
 		CodeTranslator();
 
-		// string decode(string)
+		/**
+		 * @brief Decodes the Morse code word @p word.
+		 * @param[in] word The word to decode.
+		 * @return The decoded word.
+		 */
+		std::string decode(const std::string& word);
+
 		// string encode(string)
 
 	private:

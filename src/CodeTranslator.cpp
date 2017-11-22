@@ -8,6 +8,28 @@ CodeTranslator::CodeTranslator() {
 	buildDecodeTree();
 }
 
+std::string CodeTranslator::decode(const std::string& word) {
+	std::string result = "";
+
+	auto last = word.cbegin();
+	auto curr = last;
+
+	// Add space separated letters
+	while (curr != word.cend()) {
+		if (*curr == ' ') {
+			result += decodeTree.find({std::string{last, curr}, ""})->letter;
+			last = curr + 1;
+		}
+
+		++curr;
+	}
+
+	// Add the final letter
+	result += decodeTree.find({std::string{last, curr}, ""})->letter;
+
+	return result;
+}
+
 void CodeTranslator::buildDecodeTree() {
 	const std::string path = "morse.txt";
 	std::ifstream file{path};
