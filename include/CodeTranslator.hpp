@@ -21,7 +21,12 @@ class CodeTranslator {
 		 */
 		std::string decode(const std::string& word);
 
-		// string encode(string)
+		/**
+		 * @brief Encodes @p word to Morse code.
+		 * @param[in] word The word to encode.
+		 * @return The encoded word.
+		 */
+		std::string encode(const std::string& word) const;
 
 	private:
 		/** Stores the tree used for decoding */

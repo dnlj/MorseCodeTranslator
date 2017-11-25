@@ -70,9 +70,45 @@ void testDecode(bool show) {
 	checkDecode(".. _.. ___ ..._ .___", "idovj", show);
 }
 
+void checkEncode(const std::string& code, const std::string& word, bool show) {
+	static CodeTranslator trans;
+	auto res = trans.encode(word);
+	
+	if (res != code || show) {
+		std::cout << std::boolalpha << (res == code) << std::endl;
+	}
+}
+
+void testEncode(bool show) {
+	// Lowercase
+	checkEncode("", "", show);
+	checkEncode(".", "e", show);
+	checkEncode("_", "t", show);
+	checkEncode("._", "a", show);
+	checkEncode("_.", "n", show);
+
+	checkEncode("_.. __.", "dg", show);
+	checkEncode("._ .__. .__. ._.. .", "apple", show);
+	checkEncode("_.. ___ __.", "dog", show);
+	checkEncode(".. _.. ___ ..._ .___", "idovj", show);
+
+	// Uppercase
+	checkEncode("", "", show);
+	checkEncode(".", "E", show);
+	checkEncode("_", "T", show);
+	checkEncode("._", "A", show);
+	checkEncode("_.", "N", show);
+
+	checkEncode("_.. __.", "DG", show);
+	checkEncode("._ .__. .__. ._.. .", "APPLE", show);
+	checkEncode("_.. ___ __.", "DOG", show);
+	checkEncode(".. _.. ___ ..._ .___", "IDOVJ", show);
+}
+
 int main() {
 	testMorseCodePair(false);
 	testDecode(false);
+	testEncode(false);
 
 	getchar();
 	return 0;

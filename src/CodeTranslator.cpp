@@ -30,6 +30,33 @@ std::string CodeTranslator::decode(const std::string& word) {
 	return result;
 }
 
+std::string CodeTranslator::encode(const std::string& word) const {
+	std::string result = "";
+
+	auto curr = word.cbegin();
+
+	// Convert from a-z to Morse code
+	while (curr != word.cend()) {
+		char ch = tolower(*curr);
+		auto found = encodeMap.find(std::string{ch});
+		
+		// Make sure we have valid letter
+		if (found == encodeMap.cend()) {
+			throw std::runtime_error{"Unknown letter " + ch};
+		}
+
+		result += found->second + ' ';
+		++curr;
+	}
+
+	// Remove trailing space
+	if (!result.empty()) {
+		result.pop_back();
+	}
+
+	return result;
+}
+
 void CodeTranslator::buildEncodeDecode() {
 	const std::string path = "morse.txt";
 	std::ifstream file{path};
