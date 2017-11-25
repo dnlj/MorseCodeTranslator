@@ -8,24 +8,31 @@ CodeTranslator::CodeTranslator() {
 	buildEncodeDecode();
 }
 
-std::string CodeTranslator::decode(const std::string& word) {
+std::string CodeTranslator::decode(const std::string& word) const {
 	std::string result = "";
 
 	auto last = word.cbegin();
+	auto end = word.cend();
 	auto curr = last;
 
 	// Add space separated letters
-	while (curr != word.cend()) {
-		if (*curr == ' ') {
-			result += decodeTree.find({std::string{last, curr}, ""})->letter;
-			last = curr + 1;
-		}
-
+	while (curr != end) {
 		++curr;
-	}
 
-	// Add the final letter
-	result += decodeTree.find({std::string{last, curr}, ""})->letter;
+		if (curr == end || *curr == ' ') {
+			auto found = decodeTree.find({std::string{last, curr}, ""});
+
+			if (found == nullptr) {
+				throw std::runtime_error{"Unknown Morse code " + std::string{last, curr}};
+			}
+
+			result += found->letter;
+
+			if (curr != end) {
+				last = curr + 1;
+			}
+		}
+	}
 
 	return result;
 }

@@ -48,9 +48,24 @@ void testMorseCodePair(bool show) {
 	checkMorseCodePair(MorseCodePair{"_.", ""}, MorseCodePair{"__",""},  true, show);
 }
 
-void checkDecode(const std::string& code, const std::string& word, bool show) {
+void checkDecode(const std::string& code, const std::string& word, bool show, bool shouldThrow = false) {
 	static CodeTranslator trans;
-	auto res = trans.decode(code);
+	bool threw = false;
+	std::string res;
+
+	try {
+		res = trans.decode(code);
+	} catch (...) {
+		threw = true;
+	}
+
+	if (shouldThrow && !threw) {
+		std::cout << code << " did not throw" << std::endl;
+		return;
+	} else if (!shouldThrow && threw) {
+		std::cout << code << " was not expecting throw" << std::endl;
+		return;
+	}
 
 	if (res != word || show) {
 		std::cout << std::boolalpha << (res == word) << std::endl;
@@ -58,16 +73,26 @@ void checkDecode(const std::string& code, const std::string& word, bool show) {
 }
 
 void testDecode(bool show) {
+	// Valid inputs
 	checkDecode("", "", show);
 	checkDecode(".", "e", show);
 	checkDecode("_", "t", show);
 	checkDecode("._", "a", show);
 	checkDecode("_.", "n", show);
-
+	
 	checkDecode("_.. __.", "dg", show);
 	checkDecode("._ .__. .__. ._.. .", "apple", show);
 	checkDecode("_.. ___ __.", "dog", show);
 	checkDecode(".. _.. ___ ..._ .___", "idovj", show);
+
+	// Invalid inputs
+	checkDecode("1", "", show, true);
+
+	// TODO: Figure out why these do not throw
+	checkDecode(".1", "", show, true);
+	checkDecode(".1.", "", show, true);
+	checkDecode("_1", "", show, true);
+	checkDecode("_1_", "", show, true);
 }
 
 void checkEncode(const std::string& code, const std::string& word, bool show) {
