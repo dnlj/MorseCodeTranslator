@@ -23,11 +23,11 @@ bool operator<(const MorseCodePair& left, const MorseCodePair& right) {
 
 	// Check any remaining characters (this happens when left and right are of differing length)
 	if (leftCurr != leftEnd) {
-		return *leftCurr == '.';
+		return *leftCurr < '_';
 	}
 
 	if (rightCurr != rightEnd) {
-		return *rightCurr == '_';
+		return *rightCurr > '.';
 	}
 
 	return false;

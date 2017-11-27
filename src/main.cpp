@@ -84,15 +84,31 @@ void testDecode(bool show) {
 	checkDecode("._ .__. .__. ._.. .", "apple", show);
 	checkDecode("_.. ___ __.", "dog", show);
 	checkDecode(".. _.. ___ ..._ .___", "idovj", show);
-
+	
 	// Invalid inputs
 	checkDecode("1", "", show, true);
 
-	// TODO: Figure out why these do not throw
 	checkDecode(".1", "", show, true);
-	checkDecode(".1.", "", show, true);
 	checkDecode("_1", "", show, true);
+	checkDecode("1.", "", show, true);
+	checkDecode("1_", "", show, true);
+
+	checkDecode(".1.", "", show, true);
+	checkDecode(".1_", "", show, true);
 	checkDecode("_1_", "", show, true);
+	checkDecode("_1.", "", show, true);
+
+	checkDecode("x", "", show, true);
+
+	checkDecode(".x", "", show, true);
+	checkDecode("_x", "", show, true);
+	checkDecode("x.", "", show, true);
+	checkDecode("x_", "", show, true);
+
+	checkDecode(".x.", "", show, true);
+	checkDecode(".x_", "", show, true);
+	checkDecode("_x_", "", show, true);
+	checkDecode("_x.", "", show, true);
 }
 
 void checkEncode(const std::string& code, const std::string& word, bool show) {
