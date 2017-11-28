@@ -168,10 +168,26 @@ void testEncode(bool show) {
 }
 
 int main() {
+	// Run tests
 	testMorseCodePair(false);
 	testDecode(false);
-	testEncode(true);
+	testEncode(false);
 
+	// Example usage
+	CodeTranslator trans;
+	std::string code = "._ .__. .__. ._.. .";
+	std::string word = "apple";
+
+	try {
+		std::cout << "Decode: \"" << code << "\" = \"" << trans.decode(code) << "\"\n";
+		std::cout << "Encode: \"" << word << "\" = \"" << trans.encode(word) << "\"" << std::endl;
+	} catch (const std::exception& ex) {
+		std::cout << ex.what() << std::endl;
+		throw ex;
+	}
+
+	// Wait for user input before closing
+	std::cout << "\nDone." << std::endl;
 	getchar();
 	return 0;
 }
