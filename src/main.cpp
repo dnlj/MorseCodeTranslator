@@ -111,9 +111,24 @@ void testDecode(bool show) {
 	checkDecode("_x.", "", show, true);
 }
 
-void checkEncode(const std::string& code, const std::string& word, bool show) {
+void checkEncode(const std::string& code, const std::string& word, bool show, bool shouldThrow = false) {
 	static CodeTranslator trans;
-	auto res = trans.encode(word);
+	bool threw = false;
+	std::string res;
+
+	try {
+		res = trans.encode(word);
+	} catch (...) {
+		threw = true;
+	}
+
+	if (shouldThrow && !threw) {
+		std::cout << code << " did not throw" << std::endl;
+		return;
+	} else if (!shouldThrow && threw) {
+		std::cout << code << " was not expecting throw" << std::endl;
+		return;
+	}
 	
 	if (res != code || show) {
 		std::cout << std::boolalpha << (res == code) << std::endl;
@@ -144,6 +159,12 @@ void testEncode(bool show) {
 	checkEncode("._ .__. .__. ._.. .", "APPLE", show);
 	checkEncode("_.. ___ __.", "DOG", show);
 	checkEncode(".. _.. ___ ..._ .___", "IDOVJ", show);
+
+	// Invalid inputs
+	checkEncode("", "&", show, true);
+	checkEncode("", "&az", show, true);
+	checkEncode("", "a&z", show, true);
+	checkEncode("", "az&", show, true);
 }
 
 int main() {
