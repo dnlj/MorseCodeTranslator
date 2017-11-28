@@ -22,6 +22,7 @@ std::string CodeTranslator::decode(const std::string& word) const {
 		if (curr == end || *curr == ' ') {
 			auto found = decodeTree.find({std::string{last, curr}, ""});
 
+			// Make sure we have a valid Morse code
 			if (found == nullptr) {
 				throw std::runtime_error{"Unknown Morse code " + std::string{last, curr}};
 			}

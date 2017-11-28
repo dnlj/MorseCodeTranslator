@@ -17,6 +17,7 @@ class CodeTranslator {
 		/**
 		 * @brief Decodes the Morse code word @p word.
 		 * @param[in] word The word to decode.
+		 * @throws std::runtime_error When an invalid input is given.
 		 * @return The decoded word.
 		 */
 		std::string decode(const std::string& word) const;
@@ -24,6 +25,7 @@ class CodeTranslator {
 		/**
 		 * @brief Encodes @p word to Morse code.
 		 * @param[in] word The word to encode.
+		 * @throws std::runtime_error When an invalid input is given.
 		 * @return The encoded word.
 		 */
 		std::string encode(const std::string& word) const;
