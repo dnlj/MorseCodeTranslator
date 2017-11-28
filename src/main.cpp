@@ -123,10 +123,10 @@ void checkEncode(const std::string& code, const std::string& word, bool show, bo
 	}
 
 	if (shouldThrow && !threw) {
-		std::cout << code << " did not throw" << std::endl;
+		std::cout << word << " did not throw" << std::endl;
 		return;
 	} else if (!shouldThrow && threw) {
-		std::cout << code << " was not expecting throw" << std::endl;
+		std::cout << word << " was not expecting throw" << std::endl;
 		return;
 	}
 	
@@ -170,7 +170,7 @@ void testEncode(bool show) {
 int main() {
 	testMorseCodePair(false);
 	testDecode(false);
-	testEncode(false);
+	testEncode(true);
 
 	getchar();
 	return 0;
