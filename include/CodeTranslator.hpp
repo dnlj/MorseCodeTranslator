@@ -30,6 +30,9 @@
  */
 class CodeTranslator {
 	public:
+		/**
+		 * @brief Constructs a CodeTranslator.
+		 */
 		CodeTranslator();
 
 		/**
