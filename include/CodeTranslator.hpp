@@ -10,6 +10,24 @@
 // CodeTranslator
 #include <MorseCodePair.hpp>
 
+/**
+ * @brief Used to convert to and from Morse code.
+ *
+ * Example usage:
+ * @code
+ *	CodeTranslator trans;
+ *	std::string code = "._ .__. .__. ._.. .";
+ *	std::string word = "apple";
+ *
+ *	try {
+ *		std::cout << "Decode: \"" << code << "\" = \"" << trans.decode(code) << "\"\n";
+ *		std::cout << "Encode: \"" << word << "\" = \"" << trans.encode(word) << "\"" << std::endl;
+ *	} catch (const std::exception& ex) {
+ *		std::cout << ex.what() << std::endl;
+ *		throw ex;
+ *	}
+ * @endcode
+ */
 class CodeTranslator {
 	public:
 		CodeTranslator();
